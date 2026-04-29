@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetabolAI | Applied Intelligence to Metabolic Health</title>
+    <link href="https://fonts.googleapis.com/css2?family=Avenir:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* CSS Variables - MetabolAI Branding */
+        :root {
+            --carbon: #141414;
+            --ivory: #F5F0E8;
+            --copper: #D97A43;
+            --blue-criterion: #24495A;
+            --green-mineral: #556B5D;
+            --plum-smoke: #625468;
+            --gray-mist: #D8D8D2;
+            --white-clean: #FFFFFF;
+            
+            --font-primary: 'Avenir', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            color: var(--carbon);
+            background-color: var(--ivory);
+            line-height: 1.6;
+            letter-spacing: 0.3px;
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        header {
+            background: var(--white-clean);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--gray-mist);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(20, 20, 20, 0.05);
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--carbon);
+            letter-spacing: 1px;
+        }
+
+        .language-toggle {
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+        }
+
+        .lang-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: var(--gray-mist);
+            color: var(--carbon);
+            cursor: pointer;
+            font-family: var(--font-primary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background: var(--copper);
+            color: var(--white-clean);
+        }
+
+        .lang-btn:hover {
+            opacity: 0.8;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            background: linear-gradient(135deg, var(--blue-criterion) 0%, var(--copper) 100%);
+            color: var(--white-clean);
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 400px;
+            height: 400px;
+            background: rgba(217, 122, 67, 0.1);
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-logo {
+            width: 330px;
+            height: 330px;
+            margin: 0 auto 2rem;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-primary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--copper);
+            color: var(--white-clean);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--copper);
+        }
+
+        .cta-primary:hover {
+            background: transparent;
+            color: var(--copper);
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--carbon);
+            font-weight: 700;
+        }
+
+        section .section-intro {
+            font-size: 1.1rem;
+            color: var(--blue-criterion);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            max-width: 750px;
+        }
+
+        .content-block {
+            color: var(--carbon);
+            line-height: 1.8;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .content-block h3 {
+            font-size: 1.3rem;
+            color: var(--blue-criterion);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .content-block p {
+            margin-bottom: 1rem;
+        }
+
+        /* ===== CAPABILITIES SECTION ===== */
+        .capabilities {
+            background: var(--white-clean);
+            border-top: 1px solid var(--gray-mist);
+            border-bottom: 1px solid var(--gray-mist);
+        }
+
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .capability-card {
+            padding: 2.5rem;
+            background: linear-gradient(135deg, rgba(245, 240, 232, 0.5) 0%, rgba(217, 122, 67, 0.05) 100%);
+            border: 1px solid var(--gray-mist);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .capability-card:hover {
+            border-color: var(--copper);
+            box-shadow: 0 8px 20px rgba(217, 122, 67, 0.1);
+        }
+
+        .capability-card h3 {
+            font-size: 1.1rem;
+            color: var(--blue-criterion);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .capability-card p {
+            color: var(--carbon);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact {
+            background: var(--carbon);
+            color: var(--white-clean);
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: var(--white-clean);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2.5rem 0;
+        }
+
+        .contact-item h3 {
+            color: var(--copper);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .contact-item p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.95rem;
+        }
+
+        .contact-item a {
+            color: var(--copper);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            opacity: 0.8;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #0a0a0a;
+            color: var(--gray-mist);
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            border-top: 1px solid var(--carbon);
+        }
+
+        footer a {
+            color: var(--copper);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-subtitle {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        /* ===== MODAL STYLES ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(20, 20, 20, 0.85);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: var(--white-clean);
+            padding: 3rem;
+            border-radius: 4px;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--carbon);
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background-color: var(--ivory);
+            color: var(--copper);
+        }
+
+        .modal-text {
+            color: var(--carbon);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .modal-text h3 {
+            font-size: 1.1rem;
+            color: var(--blue-criterion);
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .modal-text p {
+            margin-bottom: 1rem;
+        }
+
+        /* ===== HIDDEN CONTENT ===== */
+        .hidden {
+            display: none;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 3rem 1.5rem;
+            }
+
+            section h2 {
+                font-size: 1.6rem;
+            }
+
+            .capabilities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="logo">MetabolAI</div>
+        <div class="language-toggle">
+            <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
+            <button class="lang-btn" data-lang="es" onclick="setLanguage('es')">ES</button>
+        </div>
+    </header>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero">
+        <div class="hero-content">
+            <img src="metabolai.svg" alt="MetabolAI" class="hero-logo">
+            
+            <!-- English Content -->
+            <div id="hero-en" class="lang-content">
+                <p>Advanced software for education, monitoring, and decision-making in metabolic health and cardiometabolic risk management. Intelligent technology at the service of patients and physicians.</p>
+                <a href="#contact" class="cta-primary">Get in Touch</a>
+            </div>
+
+            <!-- Spanish Content -->
+            <div id="hero-es" class="lang-content hidden">
+                <p>Software avanzado para educación, seguimiento y toma de decisiones en salud metabólica y gestión del riesgo cardiometabólico. Tecnología inteligente al servicio de pacientes y médicos.</p>
+                <a href="#contact" class="cta-primary">Ponte en Contacto</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== OVERVIEW SECTION ===== -->
+    <section>
+        <!-- English Content -->
+        <div id="overview-en" class="lang-content">
+            <h2>What is MetabolAI?</h2>
+            <p class="section-intro">MetabolAI is an advanced software solution designed to support education, monitoring, and decision-making in metabolic health, control of cardiometabolic risk factors, and clinical bariatric medicine.</p>
+            
+            <div class="content-block">
+                <p><strong>MetabolAI was born from a clear vision:</strong> technology should not replace the physician, nor oversimplify patient complexity. It should serve as an intelligent tool to organize information, interpret data, accompany processes, and strengthen clinical decisions with criterion, evidence, and human sense.</p>
+            </div>
+        </div>
+
+        <!-- Spanish Content -->
+        <div id="overview-es" class="lang-content hidden">
+            <h2>¿Qué es MetabolAI?</h2>
+            <p class="section-intro">MetabolAI es una solución informática avanzada diseñada para apoyar la educación, seguimiento y toma de decisiones en salud metabólica, control de factores de riesgo cardiometabólico y medicina bariátrica clínica.</p>
+            
+            <div class="content-block">
+                <p><strong>MetabolAI nace de una visión clara:</strong> la tecnología no debe reemplazar al médico ni simplificar en exceso la complejidad del paciente. Debe servir como una herramienta inteligente para ordenar información, interpretar datos, acompañar procesos y fortalecer decisiones clínicas con criterio, evidencia y sentido humano.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOR DIFFERENT USERS SECTION ===== -->
+    <section>
+        <!-- English Content -->
+        <div id="users-en" class="lang-content">
+            <h2>For Different Users</h2>
+            <p class="section-intro">MetabolAI is a complete system, designed to operate at different levels of healthcare and patient engagement.</p>
+            
+            <div class="content-block">
+                <h3>For the General Public</h3>
+                <p>MetabolAI offers clear, accessible, and responsible information about metabolism, body weight, food, insulin resistance, cardiometabolic risk, healthy habits, and bariatric medicine. It answers concerns, clarifies frequently asked questions, and helps demystify concepts that are often confused with fad diets, quick promises, and unfounded advice.</p>
+
+                <h3>For the Patient Initiating or in Process of Change</h3>
+                <p>MetabolAI functions as an educational complement and accompaniment to medical advice. It helps reinforce medical recommendations, resolve daily questions, improve adherence, understand the process of habit change, and maintain a more conscious relationship with nutrition, physical activity, sleep, weight, and metabolic health. It can generate menus following dietary recommendations from the treating physician or nutritionist.</p>
+
+                <h3>For the Clinician</h3>
+                <p>MetabolAI goes further. It is a clinical support tool that allows you to analyze data, structure clinical information, identify risk factors, orient metabolic interpretation, and support medical management with permanently updated scientific evidence. Its objective is not to replace professional judgment, but to enhance it. The physician remains the one who thinks, decides, and responds to the patient. MetabolAI organizes, accompanies, and amplifies that capacity.</p>
+            </div>
+        </div>
+
+        <!-- Spanish Content -->
+        <div id="users-es" class="lang-content hidden">
+            <h2>Para Diferentes Usuarios</h2>
+            <p class="section-intro">MetabolAI es un sistema completo, diseñado para operar en varios niveles de atención sanitaria y compromiso del paciente.</p>
+            
+            <div class="content-block">
+                <h3>Para la Persona Común</h3>
+                <p>MetabolAI ofrece información clara, accesible y responsable sobre metabolismo, peso corporal, alimentación, resistencia a la insulina, riesgo cardiometabólico, hábitos saludables y medicina bariátrica. Responde inquietudes, aclara dudas frecuentes y ayuda a desmitificar conceptos que muchas veces se confunden entre dietas de moda, promesas rápidas y consejos sin fundamento.</p>
+
+                <h3>Para el Paciente Iniciando o en Proceso de Cambio</h3>
+                <p>MetabolAI funciona como un complemento educativo y de acompañamiento al consejo médico. Ayuda a reforzar indicaciones, resolver preguntas cotidianas, mejorar la adherencia, comprender el proceso de cambio de hábitos y mantener una relación más consciente con la alimentación, la actividad física, el sueño, el peso y la salud metabólica. Puede generar menús siguiendo las recomendaciones dietarias del médico o nutricionista tratante.</p>
+
+                <h3>Para el Clínico</h3>
+                <p>MetabolAI va más lejos. Es una herramienta de apoyo asistencial que permite analizar datos, estructurar información clínica, identificar factores de riesgo, orientar la interpretación metabólica y respaldar la gestión médica con evidencia científica en permanente actualización. Su objetivo no es sustituir el juicio profesional, sino potenciarlo. El médico sigue siendo quien piensa, decide y responde por el paciente. MetabolAI organiza, acompaña y amplifica esa capacidad.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ARCHITECTURE & DEVELOPMENT SECTION ===== -->
+    <section>
+        <!-- English Content -->
+        <div id="architecture-en" class="lang-content">
+            <h2>Architecture and Development</h2>
+            <p class="section-intro">MetabolAI is the result of years of conceptual design, algorithmic construction, and clinical refinement.</p>
+            
+            <div class="content-block">
+                <p>The system has been developed after years of conceptual design, construction of its main algorithm, and creation of secondary workflows that allow addressing metabolic health from an integral perspective. It is not an improvised application or a generic chatbot dressed as a physician. It is software architecture designed from real clinical practice, with experience accumulated over decades treating patients with overweight, obesity, insulin resistance, dyslipidemia, hypertension, type 2 diabetes, fatty liver disease, and other components of cardiometabolic risk.</p>
+
+                <h3>Hybrid Intelligence</h3>
+                <p>MetabolAI integrates artificial intelligence with human intelligence. That difference is fundamental. Artificial intelligence provides speed, analysis, operative memory, structure, and capacity for updating. Human intelligence provides criterion, ethics, experience, empathy, and understanding of context. Medicine needs both. The patient needs both as well.</p>
+
+                <h3>Security and Reliability</h3>
+                <p>MetabolAI has been conceived with high standards of computer security, data protection, and operational reliability, aligned with international requirements of the technology industry. In health, innovation cannot be separated from responsibility. Clinical information demands precision, confidentiality, and robust systems. MetabolAI was designed with this premise from its inception.</p>
+            </div>
+        </div>
+
+        <!-- Spanish Content -->
+        <div id="architecture-es" class="lang-content hidden">
+            <h2>Arquitectura y Desarrollo</h2>
+            <p class="section-intro">MetabolAI es el resultado de años de diseño conceptual, construcción algorítmica y refinamiento clínico.</p>
+            
+            <div class="content-block">
+                <p>El sistema ha sido desarrollado después de años de diseño conceptual, construcción de su algoritmo principal y creación de flujos secundarios que permiten abordar la salud metabólica desde una perspectiva integral. No se trata de una aplicación improvisada ni de un chatbot genérico vestido de médico. Es una arquitectura informática pensada desde la práctica clínica real, con la experiencia acumulada de décadas atendiendo pacientes con sobrepeso, obesidad, resistencia a la insulina, dislipidemia, hipertensión, diabetes tipo 2, hígado graso y otros componentes del riesgo cardiometabólico.</p>
+
+                <h3>Inteligencia Híbrida</h3>
+                <p>MetabolAI integra inteligencia artificial con inteligencia humana. Esa diferencia es fundamental. La inteligencia artificial aporta velocidad, análisis, memoria operativa, estructura y capacidad de actualización. La inteligencia humana aporta criterio, ética, experiencia, empatía y comprensión del contexto. La medicina necesita ambas. El paciente también.</p>
+
+                <h3>Seguridad y Confiabilidad</h3>
+                <p>MetabolAI ha sido concebido con altos estándares de seguridad informática, protección de datos y confiabilidad operativa, alineado con exigencias internacionales de la industria tecnológica. En salud, la innovación no puede ir separada de la responsabilidad. La información clínica exige precisión, reserva y sistemas robustos. MetabolAI fue diseñado con esa premisa desde su origen.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PURPOSE SECTION ===== -->
+    <section>
+        <!-- English Content -->
+        <div id="purpose-en" class="lang-content">
+            <h2>Purpose and Impact</h2>
+            <p class="section-intro">MetabolAI's purpose is clear: put the patient at the center.</p>
+            
+            <div class="content-block">
+                <p>Each function, each workflow, and each analysis exist to improve understanding of the case, facilitate monitoring, support the professional, and help medical decisions be more timely, more informed, and more human.</p>
+
+                <p>MetabolAI represents years of work, design, testing, correction, and vision. It is the materialization of an idea that had to wait for technology to reach sufficient maturity to become reality.</p>
+
+                <p style="margin-top: 2rem; font-size: 1.05rem; font-weight: 500;">It is not artificial intelligence to replace medicine.<br><br>It is artificial intelligence to practice medicine better.<br><br>It is not cold technology.<br><br>It is clinical technology with purpose.</p>
+            </div>
+        </div>
+
+        <!-- Spanish Content -->
+        <div id="purpose-es" class="lang-content hidden">
+            <h2>Propósito e Impacto</h2>
+            <p class="section-intro">El propósito de MetabolAI es claro: poner al paciente en el centro.</p>
+            
+            <div class="content-block">
+                <p>Cada función, cada flujo y cada análisis existen para mejorar la comprensión del caso, facilitar el seguimiento, apoyar al profesional y ayudar a que las decisiones médicas sean más oportunas, más informadas y más humanas.</p>
+
+                <p>MetabolAI representa años de trabajo, diseño, prueba, corrección y visión. Es la materialización de una idea que tuvo que esperar a que la tecnología alcanzara la madurez suficiente para convertirse en realidad.</p>
+
+                <p style="margin-top: 2rem; font-size: 1.05rem; font-weight: 500;">No es inteligencia artificial para reemplazar la medicina.<br><br>Es inteligencia artificial para ejercer mejor la medicina.<br><br>No es tecnología fría.<br><br>Es tecnología clínica con propósito.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT SECTION ===== -->
+    <section class="contact" id="contact">
+        <!-- English Content -->
+        <div id="contact-en" class="lang-content">
+            <h2>Request Access</h2>
+            <div class="contact-content">
+                <p>MetabolAI is currently available for qualified healthcare professionals and organizations. Contact us to learn more about access, integration, and implementation.</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h3>Email</h3>
+                        <p><a href="mailto:info@metabolai.net">info@metabolai.net</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Phone</h3>
+                        <p><a href="tel:+13072275115">+1 (307) 227-5115</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Address</h3>
+                        <p>30 N Gould St, Ste N<br>Sheridan, Wyoming 82801<br>USA</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Spanish Content -->
+        <div id="contact-es" class="lang-content hidden">
+            <h2>Solicitar Acceso</h2>
+            <div class="contact-content">
+                <p>MetabolAI está disponible actualmente para profesionales y organizaciones sanitarias calificadas. Contáctanos para saber más sobre acceso, integración e implementación.</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h3>Email</h3>
+                        <p><a href="mailto:info@metabolai.net">info@metabolai.net</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Teléfono</h3>
+                        <p><a href="tel:+13072275115">+1 (307) 227-5115</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Dirección</h3>
+                        <p>30 N Gould St, Ste N<br>Sheridan, Wyoming 82801<br>USA</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <!-- English Content -->
+        <div id="footer-en" class="lang-content">
+            <p>&copy; 2026 MetabolAI. All rights reserved. | <a href="https://metabolai.net">MetabolAI</a> | Privacy & Terms</p>
+            <p class="footer-subtitle">MetabolAI is a product of <a href="https://aoo-llc.com">AOO MEDTECH LLC</a></p>
+        </div>
+
+        <!-- Spanish Content -->
+        <div id="footer-es" class="lang-content hidden">
+            <p>&copy; 2026 MetabolAI. Todos los derechos reservados. | <a href="https://metabolai.net">MetabolAI</a> | Privacidad y Términos</p>
+            <p class="footer-subtitle">MetabolAI es un producto de <a href="https://aoo-llc.com">AOO MEDTECH LLC</a></p>
+        </div>
+    </footer>
+
+    <!-- ===== LANGUAGE TOGGLE & SCRIPT ===== -->
+    <script>
+        // Get user's preferred language
+        function getPreferredLanguage() {
+            const saved = localStorage.getItem('preferred-language');
+            if (saved) return saved;
+            const browserLang = navigator.language || navigator.userLanguage;
+            if (browserLang.startsWith('es')) return 'es';
+            return 'en';
+        }
+
+        // Set active language
+        function setLanguage(lang) {
+            localStorage.setItem('preferred-language', lang);
+            document.querySelectorAll('.lang-content').forEach(el => {
+                el.classList.add('hidden');
+            });
+            document.querySelectorAll(`[id$="-${lang}"]`).forEach(el => {
+                el.classList.remove('hidden');
+            });
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                }
+            });
+            document.documentElement.lang = lang;
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const preferredLang = getPreferredLanguage();
+            setLanguage(preferredLang);
+        });
+    </script>
+</body>
+</html>
